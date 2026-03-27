@@ -1,0 +1,59 @@
+body{
+    background: #EBF4F6;
+}
+
+.header{
+    background: #07294A;
+    color: white;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.sidebar{
+    height: 100vh;
+    background: linear-gradient(rgba(13,59,102,0.9), rgba(13,59,102,0.9)), url('../gambar/kamar.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    border-radius: 0 10px 10px 0px;
+}
+
+.sidebar a{
+    color: white;
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidebar a:hover{
+    background: #3a7bd5;
+    border-radius: 0 10px 10px 0px;
+}
+
+.active-menu{
+    background: #4f8ad9;
+    border-radius: 0 10px 10px 0px;
+}
+
+.isi_konten{
+    width:950px;
+    background-color:white;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.isi_konten table{
+    width:100%;
+}
+
+.isi_konten th{
+    background: #4f8ad9;
+    color: white;
+}
