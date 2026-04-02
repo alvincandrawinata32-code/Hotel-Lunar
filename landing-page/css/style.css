@@ -1,0 +1,180 @@
+body {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+}
+
+    
+.navbar {
+  background-color: #088395;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar  {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  background: #088395;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.navbar a:hover {
+  color: #088395;
+}
+
+.navbar .login {
+  margin-left: auto;
+}
+
+    
+.hero {
+  background-image: url('../image/kamar1.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero h1 {
+  color: white;
+  font-size: 48px;
+  text-shadow: 2px 2px black;
+  margin: 0;
+}
+
+.hero button {
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hero button:hover {
+  background-color: #0056b3;
+}
+.about {
+  display: flex;
+  padding: 40px 60px;
+  gap: 40px;
+  align-items: center;
+}
+.about .text {
+  flex: 1;
+}
+.about .text h2 {
+  font-size: 28px;
+  color: #333;
+  margin-top: 0;
+}
+.about .text p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 14px;
+}
+.about .text ul {
+  color: #555;
+  font-size: 14px;
+  line-height: 2;
+  padding-left: 20px;
+}
+.about img {
+  width: 350px;
+  height: 250px;
+  object-fit: cover;
+}
+.kamar {
+  display: flex;
+  padding: 40px 60px;
+  gap: 40px;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+}
+.kamar img {
+  width: 300px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.kamar .text {
+  flex: 1;
+}
+
+.kamar .text h2 {
+ font-size: 26px;
+  color: #333;
+  margin-top: 0;
+}
+.kamar .text p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.kamar .text ol {
+  color: #555;
+  font-size: 14px;
+  line-height: 2;
+  padding-left: 20px;
+}
+
+footer {
+  background-color: #111;
+  color: #aaa;
+  padding: 30px 60px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  background: orange;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 2;
+}
+
+footer ul li a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+footer ul li a:hover {
+  color: white;
+}
+
+footer h4 {
+  color: white;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
