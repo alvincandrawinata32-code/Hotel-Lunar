@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking — LUNAR HOTEL</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/booking.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html">About</a>
+    <a href="kamar.html">Kamar</a>
+    <a href="index.html" class="login">Log In</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>Form Booking</h1>
+    <p>Isi data di bawah ini untuk melakukan reservasi kamar</p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <div class="booking-layout">
+
+      <!-- FORM KIRI -->
+      <div class="form-section">
+
+        <div class="form-card">
+          <h3>Data Tamu</h3>
+          <div class="form-group">
+            <label>Nama Lengkap <span class="required">*</span></label>
+            <input type="text" id="nama" placeholder="Masukkan nama lengkap Anda">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>No. Telepon <span class="required">*</span></label>
+              <input type="tel" id="telepon" placeholder="+62 xxx xxxx xxxx">
+            </div>
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" id="email" placeholder="email@contoh.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Alamat</label>
+            <input type="text" id="alamat" placeholder="Alamat lengkap (opsional)">
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Detail Reservasi</h3>
+          <div class="form-group">
+            <label>Pilih Kamar <span class="required">*</span></label>
+            <select id="kamar" onchange="hitungHarga()">
+              <option value="">-- Pilih Kamar --</option>
+              <option value="Deluxe Room|850000">Deluxe Room — Rp 850.000/malam</option>
+              <option value="Executive Room|1250000">Executive Room — Rp 1.250.000/malam</option>
+              <option value="Suite Room|2500000">Suite Room — Rp 2.500.000/malam</option>
+              <option value="Family Room|1500000">Family Room — Rp 1.500.000/malam</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tanggal Check-In <span class="required">*</span></label>
+              <input type="date" id="checkin" onchange="hitungHarga()">
+            </div>
+            <div class="form-group">
+              <label>Tanggal Check-Out <span class="required">*</span></label>
+              <input type="date" id="checkout" onchange="hitungHarga()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Jumlah Tamu <span class="required">*</span></label>
+            <select id="jumlah_tamu">
+              <option>1 Orang</option>
+              <option>2 Orang</option>
+              <option>3 Orang</option>
+              <option>4 Orang</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Permintaan Khusus</label>
+            <textarea id="catatan" rows="3" placeholder="Contoh: kamar di lantai atas, bantal ekstra, dll."></textarea>
+          </div>
+        </div>
+
+        <button class="btn-submit" onclick="submitBooking()">Booking Sekarang</button>
+      </div>
+
+      <!-- RINGKASAN KANAN -->
+      <div class="summary-section">
+        <div class="summary-card">
+          <h3>Ringkasan Pesanan</h3>
+
+          <div class="summary-item">
+            <span class="summary-label">Kamar</span>
+            <span class="summary-value" id="sum-kamar">—</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Check-In</span>
+            <span class="summary-value" id="sum-checkin">—</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Check-Out</span>
+            <span class="summary-value" id="sum-checkout">—</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Lama Menginap</span>
+            <span class="summary-value" id="sum-malam">—</span>
+          </div>
+
+          <hr class="summary-hr">
+
+          <div class="summary-item">
+            <span class="summary-label">Harga per Malam</span>
+            <span class="summary-value" id="sum-harga-malam">—</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Pajak (10%)</span>
+            <span class="summary-value" id="sum-pajak">—</span>
+          </div>
+
+          <hr class="summary-hr">
+
+          <div class="summary-item total">
+            <span>Total</span>
+            <span id="sum-total">—</span>
+          </div>
+
+          <p class="summary-note">* Pembayaran dilakukan saat check-in</p>
+        </div>
+
+        <!-- INFO KAMAR -->
+        <div class="room-info-card" id="roomInfoCard" style="display:none">
+          <img id="roomInfoImg" src="" alt="">
+          <div class="room-info-body">
+            <strong id="roomInfoName"></strong>
+            <ul id="roomInfoFasilitas"></ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-icon">✓</div>
+      <h2>Booking Berhasil!</h2>
+      <p>Terima kasih, <strong id="modalNama"></strong>.</p>
+      <p>Reservasi Anda untuk <strong id="modalKamar"></strong> telah diterima.</p>
+      <p>Tim kami akan menghubungi Anda melalui <strong id="modalKontak"></strong>.</p>
+      <div class="modal-detail">
+        <div><span>Check-In</span><span id="modalCheckin"></span></div>
+        <div><span>Check-Out</span><span id="modalCheckout"></span></div>
+        <div><span>Total</span><span id="modalTotal"></span></div>
+      </div>
+      <button class="btn-modal" onclick="closeModal()">Tutup</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Galleries</h4>
+      <ul>
+        <li><a href="#">Photos</a></li>
+        <li><a href="#">Videos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get In Touch</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="#">lunarhotel@gmail.com</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Data kamar
+    const kamarData = {
+      'Deluxe Room': {
+        img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80',
+        fasilitas: ['King-size Bed', 'AC & TV LED', 'Minibar', 'Kamar Mandi Pribadi', 'Free WiFi']
+      },
+      'Executive Room': {
+        img: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=400&q=80',
+        fasilitas: ['Queen-size Bed', 'AC & TV LED', 'Minibar & Ruang Kerja', 'Kamar Mandi Eksklusif', 'Free WiFi & Lounge']
+      },
+      'Suite Room': {
+        img: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&q=80',
+        fasilitas: ['King-size Bed + Ruang Tamu', 'Bathtub Eksklusif', 'Minibar', 'Lounge Akses', 'Butler Service']
+      },
+      'Family Room': {
+        img: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=400&q=80',
+        fasilitas: ['2 Twin Bed', 'AC & TV LED', 'Minibar', 'Kamar Mandi Luas', 'Free WiFi & Sarapan Gratis']
+      }
+    };
+
+    function formatRupiah(angka) {
+      return 'Rp ' + angka.toLocaleString('id-ID');
+    }
+
+    function formatTanggal(str) {
+      if (!str) return '—';
+      const d = new Date(str);
+      return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function hitungHarga() {
+      const kamarVal = document.getElementById('kamar').value;
+      const checkin  = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+
+      // Update ringkasan kamar
+      if (kamarVal) {
+        const [nama, hargaStr] = kamarVal.split('|');
+        const harga = parseInt(hargaStr);
+        document.getElementById('sum-kamar').textContent = nama;
+        document.getElementById('sum-harga-malam').textContent = formatRupiah(harga);
+
+        // Tampilkan info kamar
+        const info = kamarData[nama];
+        if (info) {
+          document.getElementById('roomInfoImg').src = info.img;
+          document.getElementById('roomInfoName').textContent = nama;
+          const ul = document.getElementById('roomInfoFasilitas');
+          ul.innerHTML = info.fasilitas.map(f => `<li>${f}</li>`).join('');
+          document.getElementById('roomInfoCard').style.display = 'flex';
+        }
+
+        // Hitung malam
+        if (checkin && checkout) {
+          const d1 = new Date(checkin);
+          const d2 = new Date(checkout);
+          const malam = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+
+          if (malam > 0) {
+            const subtotal = harga * malam;
+            const pajak    = Math.round(subtotal * 0.1);
+            const total    = subtotal + pajak;
+
+            document.getElementById('sum-checkin').textContent  = formatTanggal(checkin);
+            document.getElementById('sum-checkout').textContent = formatTanggal(checkout);
+            document.getElementById('sum-malam').textContent    = malam + ' malam';
+            document.getElementById('sum-pajak').textContent    = formatRupiah(pajak);
+            document.getElementById('sum-total').textContent    = formatRupiah(total);
+          } else {
+            document.getElementById('sum-malam').textContent = 'Tanggal tidak valid';
+            document.getElementById('sum-total').textContent = '—';
+          }
+        }
+      }
+
+      if (checkin)  document.getElementById('sum-checkin').textContent  = formatTanggal(checkin);
+      if (checkout) document.getElementById('sum-checkout').textContent = formatTanggal(checkout);
+    }
+
+    function submitBooking() {
+      const nama    = document.getElementById('nama').value.trim();
+      const telepon = document.getElementById('telepon').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const kamarVal = document.getElementById('kamar').value;
+      const checkin  = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+
+      if (!nama || !telepon || !email || !kamarVal || !checkin || !checkout) {
+        alert('Mohon lengkapi semua field yang wajib diisi (*)');
+        return;
+      }
+
+      const [namaKamar, hargaStr] = kamarVal.split('|');
+      const harga  = parseInt(hargaStr);
+      const d1     = new Date(checkin);
+      const d2     = new Date(checkout);
+      const malam  = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+
+      if (malam <= 0) {
+        alert('Tanggal check-out harus setelah check-in.');
+        return;
+      }
+
+      const subtotal = harga * malam;
+      const pajak    = Math.round(subtotal * 0.1);
+      const total    = subtotal + pajak;
+
+      document.getElementById('modalNama').textContent    = nama;
+      document.getElementById('modalKamar').textContent   = namaKamar;
+      document.getElementById('modalKontak').textContent  = email;
+      document.getElementById('modalCheckin').textContent = formatTanggal(checkin);
+      document.getElementById('modalCheckout').textContent = formatTanggal(checkout);
+      document.getElementById('modalTotal').textContent   = formatRupiah(total);
+
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Set min tanggal = hari ini
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('checkin').min  = today;
+    document.getElementById('checkout').min = today;
+
+    // Checkout min = checkin + 1
+    document.getElementById('checkin').addEventListener('change', function() {
+      const d = new Date(this.value);
+      d.setDate(d.getDate() + 1);
+      document.getElementById('checkout').min = d.toISOString().split('T')[0];
+    });
+  </script>
+
+</body>
+</html>
