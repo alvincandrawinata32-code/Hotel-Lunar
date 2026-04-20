@@ -1,166 +1,71 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-  font-family: Arial;
-  margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 100vh;
 }
 
+/* NAVBAR — sama dengan style.css */
 .navbar {
   background-color: #088395;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.navbar  {
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  background: #088395;
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.navbar a:hover {
-  color: yellow;
-}
-
-.navbar .login {
-  margin-left: auto;
-}
-
-.header {
-  background-color: #1a1a2e;
-  color: white;
-  text-align: center;
-  padding: 50px 20px;
-}
-
-.header h1 {
-  font-size: 36px;
-  margin: 0 0 10px 0;
-}
-
-.header p {
-  font-size: 15px;
-  color: #aaa;
-  margin: 0;
-}
-
-.kamar-item {
-  display: flex;
-  padding: 40px 60px;
-  gap: 40px;
-  align-items: flex-start;
-  border-bottom: 1px solid #eee;
-}
- 
-.kamar-item img {
-  width: 420px;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.kamar-detail {
-  flex: 1;
-}
-
-.kamar-detail h2 {
-  font-size: 24px;
-  color: #222;
-  margin: 0 0 16px 0;
-}
-
-.info-row {
+  padding: 15px 30px;
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
-  color: #555;
-  margin-bottom: 6px;
 }
+.navbar a { color: white; text-decoration: none; font-size: 14px; }
+.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; margin-left: auto; }
 
-.info-row span {
-  font-weight: bold;
-  min-width: 110px;
-}
-
-
-.deskripsi {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.7;
-  margin: 14px 0;
-}
-
-.kamar-detail ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px 0;
-  font-size: 14px;
-  color: #444;
-  line-height: 2;
-}
-
-.kamar-detail button {
-  background-color: #007bff;
+.header {
+  background: #1a3a5c;
   color: white;
-  border: none;
-  padding: 10px 24px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 4px;
+  text-align: center;
+  padding: 30px;
 }
 
-.kamar-detail button:hover {
-  background-color: #0056b3;
+/* KAMAR GRID */
+.kamar-item {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 40px;
+  padding: 40px 60px;
+  border-bottom: 1px solid #eee;
+  background: white;
 }
+
+.kamar-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.kamar-detail h3 { font-size: 22px; color: #1a3a5c; margin-bottom: 10px; }
+.kamar-detail p  { margin-bottom: 8px; color: #555; line-height: 1.6; }
+.kamar-detail ul { padding-left: 20px; color: #555; line-height: 2; margin-bottom: 12px; }
+
+.tombol {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 8px;
+}
+.tombol:hover { background: #0056b3; }
 
 footer {
-  background-color: #111;
+  background: #111;
   color: #aaa;
   padding: 30px 60px;
-  display: flex;
-  justify-content: space-between;
   font-size: 13px;
-  flex-wrap: wrap;
-  gap: 20px;
 }
 
-footer .logo {
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  background: orange;
-  padding: 4px 10px;
-  border-radius: 4px;
-  display: inline-block;
-}
-
-footer h4 {
-  color: white;
-  margin: 0 0 8px 0;
-}
-
-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  line-height: 2;
-}
-
-footer ul li a {
-  color: #aaa;
-  text-decoration: none;
-}
-
-footer ul li a:hover {
-  color: white;
+@media (max-width: 768px) {
+  .kamar-item { grid-template-columns: 1fr; padding: 30px 20px; }
+  .kamar-item img { height: 220px; }
 }
