@@ -10,7 +10,6 @@ body {
   min-height: 100vh;
 }
 
-/* NAVBAR — sama dengan style.css */
 .navbar {
   background-color: #088395;
   padding: 15px 30px;
@@ -43,7 +42,6 @@ body {
   align-items: flex-start;
 }
 
-/* FORM */
 .form-section { flex: 1; display: flex; flex-direction: column; gap: 1.25rem; }
 
 .form-card {
