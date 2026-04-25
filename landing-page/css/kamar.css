@@ -8,7 +8,8 @@ body {
   min-height: 100vh;
 }
 
-.navbar { background-color: #088395; padding: 15px 80px; display: flex; align-items: center; justify-content: space-between; }
+.navbar { background-color: #088395; padding: 15px 80px; display: flex; align-items: center; justify-content: space-between; 
+  padding-left: 10px !important; padding-right: 10px !important;}
 
 .nav-kiri { display: flex; gap: 20px;
 }
