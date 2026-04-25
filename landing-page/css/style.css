@@ -10,9 +10,9 @@ body {
 
 .navbar { background-color: #088395; padding: 15px 80px; display: flex; align-items: center; justify-content: space-between; }
 
-.nav-left { display: flex; gap: 20px; }
+.nav-kiri { display: flex; gap: 20px; }
 
-.nav-right { display: flex; gap: 10px; }
+.nav-kanan { display: flex; gap: 10px; }
 
 .navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; }
 
