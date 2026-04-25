@@ -12,7 +12,7 @@ body {
 
 .nav-kanan { display: flex; gap: 10px; }
 
-.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; }
+.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; color: white !important; }
 
 .hero {
   background: #1a3a5c url('../image/kamar1.jpg') center/cover;
@@ -47,3 +47,8 @@ footer {
   .about { grid-template-columns: 1fr; padding: 30px 20px; }
   .hero h1 { font-size: 28px; }
 }
+
+.navbar a {
+  color: white !important; text-decoration: none; }
+
+.navbar a:hover { color: #ddd !important; }
