@@ -14,7 +14,7 @@ body {
   gap: 15px;
 }
 .navbar a { color: white; text-decoration: none; font-size: 14px; }
-.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; margin-left: auto; }
+.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; justify-content: space-between; }
 
 .hero {
   background: #1a3a5c url('../image/kamar1.jpg') center/cover;
