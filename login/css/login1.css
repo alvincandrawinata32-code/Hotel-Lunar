@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+    background-color: #33688C
+}
+
+.left-side{
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('../gambar/gambar1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-card{
+    width: 320px;
+    padding: 25px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.95);
+}
