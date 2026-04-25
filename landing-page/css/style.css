@@ -6,15 +6,15 @@ body {
   min-height: 100vh;
 }
 
-.navbar {
-  background-color: #088395;
-  padding: 15px 100px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.navbar a { color: white; text-decoration: none; font-size: 14px; }
-.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; justify-content: space-between; }
+.navbar { background-color: #088395; padding: 15px 100px; display: flex; align-items: center; gap: 15px; }
+
+.navbar { background-color: #088395; padding: 15px 80px; display: flex; align-items: center; justify-content: space-between; }
+
+.nav-left { display: flex; gap: 20px; }
+
+.nav-right { display: flex; gap: 10px; }
+
+.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; }
 
 .hero {
   background: #1a3a5c url('../image/kamar1.jpg') center/cover;
@@ -48,14 +48,4 @@ footer {
 @media (max-width: 768px) {
   .about { grid-template-columns: 1fr; padding: 30px 20px; }
   .hero h1 { font-size: 28px; }
-}
-
-.navbar .login {
-  border: 1px solid white;
-  padding: 6px 18px;
-  border-radius: 4px;
-}
-
-.navbar a:last-child {
-  margin-left: 10px; 
 }
