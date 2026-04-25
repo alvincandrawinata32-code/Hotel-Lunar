@@ -48,7 +48,9 @@ footer {
   .hero h1 { font-size: 28px; }
 }
 
-.navbar a {
-  color: white !important; text-decoration: none; }
+.navbar { padding-left: 120px !important; padding-right: 120px !important;
+}
+
+.navbar a { color: white !important; text-decoration: none; }
 
 .navbar a:hover { color: #ddd !important; }
