@@ -8,10 +8,10 @@ body {
 
 .navbar {
   background-color: #088395;
-  padding: 15px 30px;
+  padding: 15px 60px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 .navbar a { color: white; text-decoration: none; font-size: 14px; }
 .navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; margin-left: auto; }
@@ -48,4 +48,14 @@ footer {
 @media (max-width: 768px) {
   .about { grid-template-columns: 1fr; padding: 30px 20px; }
   .hero h1 { font-size: 28px; }
+}
+
+.navbar .login {
+  border: 1px solid white;
+  padding: 6px 18px;
+  border-radius: 4px;
+}
+
+.navbar a:last-child {
+  margin-left: 10px; 
 }
