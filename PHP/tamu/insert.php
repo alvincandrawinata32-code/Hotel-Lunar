@@ -1,15 +1,12 @@
 <?php 
-include "../koneksi.php";
-
-$db = new Database();
-$conn = $db->conn;
+include "../db.php";
 
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
 $query = "INSERT INTO tamu (nama, email, password)
-VALUES ('$username', '$email', '$password')"
+VALUES ('$username', '$email', '$password')";
 
 if ($conn->query($query) === TRUE) {
     echo "Data berhasil ditambahkan <br>";

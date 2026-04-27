@@ -1,7 +1,5 @@
 <?php
-include "../koneksi.php";
-$db = new Database();
-$conn = $db->conn;
+include "../db.php";
 
 $id = $_GET['id'];
 
