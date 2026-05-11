@@ -1,22 +1,18 @@
-<?php
-require_once "../db.php";
+<?php 
+include "../db.php";
 
-if (count($_POST) > 0) {
-    try {
-        $nama  = $_POST['nama'];
-        $telp  = $_POST['telp'];
-        $email = $_POST['email'];
+$username = $_POST['username'];
+$email = $_POST['email'];
+$alamat = $_POST['alamat'];
+$password = $_POST['password'];
 
-        $sql = "INSERT INTO tamu (nama, alamar, email, no_telp) 
-                VALUES ('$nama', '-', '$email', '$telp')";
-        $conn->exec($sql);
-        $id_tamu = $conn->lastInsertId();
+$query = "INSERT INTO tamu (nama, alamat, email, password) VALUES ('$username', '$alamat', '$email', '$password')";
 
-        header("Location: insert_reservasi.php");
-        exit;
-
-    } catch (PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
-    }
+if ($conn->query($query) === TRUE) {
+    echo "Data berhasil ditambahkan <br>";
+} else {
+    echo "Error: " . $conn->error;
 }
+
+echo "<a href='index.php'>Kembali</a>";
 ?>

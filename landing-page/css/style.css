@@ -6,14 +6,20 @@ body {
   min-height: 100vh;
 }
 
-.navbar { background-color: #088395; padding: 15px 80px; display: flex; align-items: center; justify-content: space-between; }
+.navbar { background-color: #088395; padding: 15px 80px; display: flex; align-items: center; justify-content: space-between; 
+  padding-left: 10px !important; padding-right: 10px !important;}
 
-.nav-kiri { display: flex; gap: 20px; }
+.nav-kiri { display: flex; gap: 20px;
+}
 
-.nav-kanan { display: flex; gap: 10px; }
+.nav-kanan { display: flex; gap: 5px;
+}
 
-.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px; color: white !important; }
+.navbar a { color: white; text-decoration: none;
+}
 
+.navbar .login { border: 1px solid white; padding: 6px 18px; border-radius: 4px;
+}
 .hero {
   background: #1a3a5c url('../image/kamar1.jpg') center/cover;
   min-height: 450px;
