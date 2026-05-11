@@ -15,7 +15,7 @@ $result = $conn->query("SELECT * FROM tamu");
     <th>Aksi</th>
 </tr>
 
-<?php while($row = $result->fetch_assoc()) { ?>
+<?php while($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
 <tr>
     <td><?= $row['nama'] ?></td>
     <td><?= $row['email'] ?></td>
