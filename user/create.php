@@ -21,12 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $encrypted_password = encryptPassword($password);
 
-    $sql = "INSERT INTO user (username, password, role) VALUES (:username, :password, :role)";
+    $sql = "INSERT INTO tamu (username, password) VALUES (:username, :password)";
     $stmt = $conn->prepare($sql);
 
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password', $encrypted_password);
-    $stmt->bindParam(':role', $role);
 
     if ($stmt->execute()) {
         echo "User berhasil ditambahkan";
