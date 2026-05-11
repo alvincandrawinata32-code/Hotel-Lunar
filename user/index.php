@@ -1,9 +1,9 @@
     <?php
-require_once '../checkuser.php';
+//require_once '../checkuser.php';
 require_once "../db.php";
 
 // Query untuk mengambil semua data pengguna
-$sql = "SELECT * FROM user";
+$sql = "SELECT * FROM tamu";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
@@ -14,10 +14,9 @@ if ($stmt->rowCount() > 0) {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr>";
-        echo "<td>" . $row['id'] . "</td>";
+        echo "<td>" . $row['id_tamu'] . "</td>";
         echo "<td>" . $row['username'] . "</td>";
-        echo "<td>" . $row['role'] . "</td>";
-       echo "<td><a href='update.php?id=" . $row['id'] . "'>Edit</a> | <a href='delete.php?id=" . $row['id'] .
+        echo "<td><a href='update.php?id=" . $row['id_tamu'] . "'>Edit</a> | <a href='delete.php?id=" . $row['id_tamu'] .
          "' onclick='return confirm(\"yakin ingin menghapus data ini?\")'>Delete</a></td>";
         echo "</tr>";
     }
