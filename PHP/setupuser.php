@@ -9,8 +9,8 @@ $role = 'user';
 $token = sha1("$salt1$password$salt2");
 
 try {
-  $sql = "INSERT INTO user (username,password,role) 
-          VALUES ('$username','$token','$role')";
+  $sql = "INSERT INTO user (username,password) 
+          VALUES ('$username','$token')";
   $conn->exec($sql);
 
   echo "Data user pertama telah ditambahkan. <br>";

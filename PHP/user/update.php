@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Query untuk mengambil data user berdasarkan id
-    $sql = "SELECT * FROM user WHERE id = :id";
+    $sql = "SELECT * FROM tamu WHERE id = :id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
