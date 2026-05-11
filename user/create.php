@@ -1,5 +1,5 @@
 <?php
-require_once '../checkuser.php';
+//require_once '../checkuser.php';
 require_once "../db.php";
 
 
@@ -28,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(':password', $encrypted_password);
     $stmt->bindParam(':role', $role);
 
-    // Menjalankan query
     if ($stmt->execute()) {
         echo "User berhasil ditambahkan";
     } else {
@@ -41,6 +40,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Username: <input type="text" name="username" required><br>
     Password: <input type="password" name="password" required><br>
     Verify Password: <input type="password" name="verify_password" required><br>
-    Role: <input type="text" name="role" required><br>
     <input type="submit" value="Tambah User">
 </form>
