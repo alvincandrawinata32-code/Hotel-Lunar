@@ -1,30 +1,27 @@
 <?php
-include "../db.php";
+require_once "../db.php";
 
-$result = $conn->query("SELECT * FROM tamu");
+$stmt = $conn->prepare("SELECT * FROM tamu");
+$stmt->execute();
+$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<h2>Data Tamu</h2>
-<a href="view.php">Tambah Data</a>
+<a href="create.php"> Tambah Data</a>
 
-<table border="1" cellpadding="10">
+<table border="1">
 <tr>
+    <th>ID Pelanggan</th>
     <th>Nama</th>
-    <th>Email</th>
-    <th>Password</th>
-    <th>Aksi</th>
+    <th>Alamat</th>
 </tr>
 
-<?php while($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
+<?php foreach($data as $row): ?>
 <tr>
+    <td><?= $row['id_pelanggan'] ?></td>
     <td><?= $row['nama'] ?></td>
-    <td><?= $row['email'] ?></td>
-    <td><?= $row['password'] ?></td>
-    <td>
-        <a href="update.php?id=<?= $row['id_tamu'] ?>">Edit</a> |
-        <a href="delete.php?id=<?= $row['id_tamu'] ?>">Hapus</a>
-    </td>
-</tr>
-<?php } ?>
+    <td><?= $row['alamat'] ?></td>
 
+</tr>
+<?php endforeach; ?>
 </table>
+

@@ -1,20 +1,17 @@
-<?php 
-include "../db.php";
+<?php
+require_once "../db.php";
 
-$username = $_POST['username'];
-$email = $_POST['email'];
-$alamat = $_POST['alamat'];
-$password = $_POST['password'];
+$stmt = $conn->prepare("INSERT INTO tamu 
+(id_pelanggan, nama, alamat) 
+VALUES (?, ?, ?)");
 
-$query = "INSERT INTO tamu (nama, alamat, email, password) 
-        VALUES ('$username', '$alamat', '$email', '$password')";
+$stmt->execute([
+    $_POST['id_pelanggan'],
+    $_POST['nama'],
+    $_POST['alamat'],
+]);
 
-try {
-    $conn->exec($query);
-    echo "Data berhasil ditambahkan <br>";
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-echo "<a href='index.php'>Kembali</a>";
+header("Location: index.php");
+exit;
 ?>
+   

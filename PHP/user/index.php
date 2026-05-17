@@ -1,4 +1,4 @@
-    <?php
+<?php
 //require_once '../checkuser.php';
 require_once "../db.php";
 
