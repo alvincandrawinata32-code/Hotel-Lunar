@@ -1,24 +1,24 @@
 <?php
-session_start();
-require_once('db.php');
+    session_start();
+    require_once('db.php');
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+    if (isset($_POST['username']) && isset($_POST['password'])) {
 
-    $salt1 = "qm&h*";
-    $salt2 = "pg!@";
+        $salt1 = "qm&h*";
+        $salt2 = "pg!@";
 
-    $username = $_POST['username'];
-    $pw_temp = $_POST['password'];
+        $username = $_POST['username'];
+        $pw_temp = $_POST['password'];
 
-    // Enkripsi password
-    $token = sha1("$salt1$pw_temp$salt2");
+        // Enkripsi password
+        $token = sha1("$salt1$pw_temp$salt2");
 
-    // Query cek user
-    $prepared = $conn->prepare("
-        SELECT * FROM tamu 
-        WHERE username = :username 
-        AND password = :password
-    ");
+        // Query cek user
+        $prepared = $conn->prepare("
+            SELECT * FROM tamu 
+            WHERE username = :username 
+            AND password = :password
+        ");
 
     $prepared->bindParam(':username', $username);
     $prepared->bindParam(':password', $token);
@@ -55,7 +55,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             }
 
             // Redirect ke halaman user
-            header('Location: index.php');
+            header('Location: ../index.php');
             exit;
 
         } else {
@@ -71,7 +71,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         echo "Error : " . $e->getMessage();
     }
 
-} else {
+    } else {
 
 ?>
 

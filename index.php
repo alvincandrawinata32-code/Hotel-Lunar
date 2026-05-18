@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -13,19 +17,19 @@
     <a href="index.html">About</a>
     <a href="landing-page/html/kamar.html">Kamar</a>
     <?php
-              if (!isset($_SESSION['username'])) {
-                  ?>
-                  <a class="nav-link login-btn" href="login.php">Login</a>
-                  <?php
-              } else {
-                    echo "<p>Halo, " . $_SESSION['username'] . "</p>";
-                    ?>
-                    <a href="logout.php">
-                        <button type="button" class="btn btn-primary">Logout</button>
-                    </a>
-                    <?php
-                }
-                ?>
+        if (!isset($_SESSION['username'])) {
+            ?>
+        <a class="nav-link login-btn" href="login/html/login1.php">Login</a>
+            <?php
+        } else {
+            echo "<p>Halo, " . $_SESSION['username'] . "</p>";
+            ?>
+            <a href="PHP/logout.php">
+            <button type="button" class="btn btn-primary">Logout</button>
+            </a>
+            <?php
+        }
+    ?>
 </div>
 
 <div class="hero">

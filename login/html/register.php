@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,30 +14,25 @@
 
         <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="card register-card shadow">
-
+            
                 <h5 class="text-center mb-3">MEMBUAT AKUN</h5>
-
-                <form action="../php/insert.php" method="POST">
+                <form id="passwordForm" method="POST" action="../../PHP/setupuser.php">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
+
                     <button type="submit" class="btn btn-primary w-100">Daftar</button>
                 </form>
-
                 <p class="text-center small">Sudah memiliki akun? 
-                    <a href="login1.html">Masuk</a>
+                    <a href="login1.php">Masuk</a>
                 </p>
 
-                <button type="button" class="btn btn-secondary w-100 mt-2" onclick="window.location.href='../../index.html'">kembali ke beranda</button>
+                <button type="button" class="btn btn-secondary w-100 mt-2" onclick="window.location.href='../../../index.php'">kembali ke beranda</button>
 
             </div>
         </div>

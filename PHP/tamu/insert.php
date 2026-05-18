@@ -6,7 +6,7 @@ $stmt = $conn->prepare("INSERT INTO tamu
 VALUES (?, ?, ?)");
 
 $stmt->execute([
-    $_POST['id_pelanggan'],
+    $_POST['id_tamu'],
     $_POST['nama'],
     $_POST['alamat'],
 ]);

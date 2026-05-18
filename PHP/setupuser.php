@@ -1,19 +1,25 @@
 <?php
 require_once 'db.php';
+
 $salt1 = "qm&h*";
 $salt2 = "pg!@";
 
-$username = 'Haikal';
-$password = 'haikal123';
-$role = 'user';
-$token = sha1("$salt1$password$salt2");
+$username = $_POST['username'];
+$pw_temp  = $_POST['password'];
+
+$password = sha1("$salt1$pw_temp$salt2");
 
 try {
-  $sql = "INSERT INTO user (username,password) 
-          VALUES ('$username','$token')";
-  $conn->exec($sql);
+    $sql = $conn->prepare("INSERT INTO tamu (username, password) VALUES (:username, :password)");
+    $sql->bindParam(':username', $username);
+    $sql->bindParam(':password', $password);
+    $sql->execute();
 
-  echo "Data user pertama telah ditambahkan. <br>";
+    // Redirect ke halaman login setelah berhasil
+    header('Location: /Hotel-Lunar/login/html/login1.php');
+    exit;
+
 } catch (PDOException $e) {
-  echo $sql . "<br>" . $e->getMessage();
+    echo "Error: " . $e->getMessage();
 }
+?>
