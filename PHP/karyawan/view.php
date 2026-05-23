@@ -1,6 +1,4 @@
 <?php
-// Ambil semua data pegawai dari database
-// Dipanggil dari halaman back-office manager3.php (Daftar Karyawan)
 
 require_once __DIR__ . '/../db.php';
 

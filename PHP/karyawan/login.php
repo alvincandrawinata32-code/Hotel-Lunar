@@ -1,6 +1,4 @@
 <?php
-// Logic login karyawan dan manager
-// Dipanggil oleh login_office/html/login1.php
 
 session_start();
 

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Kalau sudah login, langsung ke index
 if (isset($_SESSION['id_tamu'])) {
     header('Location: /Hotel_Lunar/index.php');
     exit;

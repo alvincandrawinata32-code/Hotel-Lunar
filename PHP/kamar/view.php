@@ -1,6 +1,4 @@
 <?php
-// Ambil semua data kamar dari database
-// Dipanggil dari halaman yang perlu menampilkan daftar kamar
 
 require_once __DIR__ . '/../db.php';
 

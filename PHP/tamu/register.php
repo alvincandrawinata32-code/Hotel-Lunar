@@ -1,7 +1,4 @@
 <?php
-// Logic register tamu baru
-// File ini berisi proses insert tamu ke database
-// Dipanggil oleh login/html/login2.php
 
 session_start();
 

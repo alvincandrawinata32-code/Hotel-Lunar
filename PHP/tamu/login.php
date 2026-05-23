@@ -1,7 +1,4 @@
 <?php
-// Logic login tamu
-// File ini berisi proses cek login ke database
-// Dipanggil oleh login/html/login1.php
 
 session_start();
 

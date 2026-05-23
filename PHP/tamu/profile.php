@@ -1,6 +1,4 @@
 <?php
-// Ambil data profil tamu yang sedang login
-// Dipanggil oleh profile/html/userprofile.php
 
 session_start();
 
