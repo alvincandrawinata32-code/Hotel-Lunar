@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt = $conn->prepare("INSERT INTO reservasi 
     (id_reservasi, id_tamu, id_kamar, tanggal_checkin, tanggal_checkout, status_reservasi) 
-    VALUES (?, ?, ?, ?, ?, ?)");  // ← 6 tanda ?
+    VALUES (?, ?, ?, ?, ?, ?)");
 
     $stmt->execute([
         $_POST['id_reservasi'],

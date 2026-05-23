@@ -22,10 +22,15 @@
                         <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password"  class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password" required>
+                        <small id="passError" style="color: red; display: block"></small>
                     </div>
-
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Konfirmasi Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                        <small id="passError" style="color:red; display:block"></small>
+                    </div> 
                     <button type="submit" class="btn btn-primary w-100">Daftar</button>
                 </form>
                 <p class="text-center small">Sudah memiliki akun? 
@@ -33,7 +38,6 @@
                 </p>
 
                 <button type="button" class="btn btn-secondary w-100 mt-2" onclick="window.location.href='../../../index.php'">kembali ke beranda</button>
-
             </div>
         </div>
 
@@ -50,6 +54,6 @@
 
     </div>
 </div>
-
+<script src="../../validasi.js"></script>
 </body>
 </html>
