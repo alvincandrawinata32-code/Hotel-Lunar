@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if (!isset($_SESSION['id_tamu'])) {
     header('location: ../../login/html/login1.php');
@@ -19,52 +20,43 @@ $stmt = $conn->prepare("
 $stmt->execute([$_SESSION['id_tamu']]);
 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Riwayat Transaksi</title>
-  <link rel="stylesheet" href="../css/riwayat.css">
-</head>
-<body>
-  <div class="page">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Riwayat Transaksi</title>
+        <link rel="stylesheet" href="../css/riwayat.css">
+    </head>
+    <body>
+        <aside class="sidebar">
+            <nav class="menu">
+                <a href="../../index.php">About</a>
+                <a href="../../landing-page/html/kamar.php">Kamar</a>
+                <a href="../../landing-page/html/booking.php">Booking</a>
+                <a href="userprofile.php">User Profile</a>
+                <a href="riwayat.php" class="active">Riwayat</a>
+                <a href="../../PHP/logout.php">Logout</a>
+            </nav>
+        </aside>
 
-    <header class="topbar">
-      <h1>Riwayat Transaksi</h1>
-    </header>
-
-    <div class="main-layout">
-      <aside class="sidebar">
-        <nav class="menu">
-          <a href="../../index.php">About</a>
-          <a href="../../landing-page/html/kamar.php">Kamar</a>
-          <a href="../../landing-page/html/booking.php">Booking</a>
-          <a href="userprofile.php">User Profile</a>
-          <a href="riwayat.php" class="active">Riwayat</a>
-          <a href="../../PHP/logout.php">Logout</a>
-        </nav>
-        <div class="sidebar-image"></div>
-      </aside>
-
-      <main class="content">
-        <?php if (count($data) === 0): ?>
-            <p>Belum ada riwayat reservasi.</p>
-        <?php else: ?>
-            <?php foreach($data as $row): ?>
-            <div class="room-card">
-              <h3><?= htmlspecialchars($row['tipe_kamar']) ?></h3>
-              <p class="duration"><?= $row['durasi'] ?> Malam</p>
-              <p>Check-in: <?= $row['tanggal_checkin'] ?> &nbsp;|&nbsp; Check-out: <?= $row['tanggal_checkout'] ?></p>
-              <p>Status: <?= $row['status_reservasi'] ?></p>
-              <?php if ($row['total_bayar']): ?>
-              <p>Total Bayar: Rp <?= number_format($row['total_bayar'], 0, ',', '.') ?> (<?= $row['metode_bayar'] ?>)</p>
-              <?php endif; ?>
-            </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
-      </main>
-    </div>
-  </div>
-</body>
+        <main class="content">
+            <?php if (count($data) === 0): ?>
+                <p>Belum ada riwayat reservasi.</p>
+            <?php else: ?>
+                <?php foreach($data as $row): ?>
+                    <div class="room-card">
+                        <h3><?= htmlspecialchars($row['tipe_kamar']) ?></h3>
+                        <p class="duration"><?= $row['durasi'] ?> Malam</p>
+                        <p>Check-in: <?= $row['tanggal_checkin'] ?> &nbsp;|&nbsp; Check-out: <?= $row['tanggal_checkout'] ?></p>
+                        <p>Status: <?= $row['status_reservasi'] ?></p>
+                        <?php if ($row['total_bayar']): ?>
+                        <p>Total Bayar: Rp <?= number_format($row['total_bayar'], 0, ',', '.') ?> (<?= $row['metode_bayar'] ?>)</p>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </main>
+    </body>
 </html>
