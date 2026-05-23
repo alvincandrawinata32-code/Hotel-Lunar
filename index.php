@@ -1,41 +1,39 @@
 <?php
 session_start();
 ?>
-
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUNAR HOTEL - Beranda</title>
     <link rel="stylesheet" href="landing-page/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="navbar">
-    <a href="index.html">About</a>
-    <a href="landing-page/html/kamar.html">Kamar</a>
-    <?php
-        if (!isset($_SESSION['username'])) {
-            ?>
-        <a class="nav-link login-btn" href="login/html/login1.php">Login</a>
-            <?php
-        } else {
-            echo "<p>Halo, " . $_SESSION['username'] . "</p>";
-            ?>
-            <a href="PHP/logout.php">
-            <button type="button" class="btn btn-primary">Logout</button>
-            </a>
-            <?php
-        }
-    ?>
+    <div class="nav-kiri">
+        <a href="index.php">About</a>
+        <a href="landing-page/html/kamar.php">Kamar</a>
+    </div>
+    <div class="nav-kanan">
+        <a href="login_office/html/login1.php" class="login">Masuk Karyawan</a>
+        <?php if (isset($_SESSION['id_tamu'])): ?>
+            <a href="profile/html/userprofile.php" class="login">Halo, <?php echo htmlspecialchars($_SESSION['username']); ?></a>
+            <a href="PHP/logout.php" class="login">Logout</a>
+        <?php endif; ?>
+    </div>
 </div>
 
 <div class="hero">
     <h1>Selamat Datang di LUNAR HOTEL</h1>
     <p>Kemewahan dan Kenyamanan di Pusat Kota</p>
-    <a href="landing-page/html/booking.html" style="background: orange; padding: 10px 20px; text-decoration: none; color: black; border-radius: 5px; margin-top: 15px; display: inline-block;">Booking Sekarang</a>
+    <?php if (isset($_SESSION['id_tamu'])): ?>
+        <a href="landing-page/html/booking.php" style="background: orange; padding: 10px 20px; text-decoration: none; color: black; border-radius: 5px; margin-top: 15px; display: inline-block;">Booking Sekarang</a>
+    <?php else: ?>
+        <a href="login/html/login1.php" style="background: orange; padding: 10px 20px; text-decoration: none; color: black; border-radius: 5px; margin-top: 15px; display: inline-block;">Booking Sekarang</a>
+    <?php endif; ?>
 </div>
 
 <main>

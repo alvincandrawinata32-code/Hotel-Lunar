@@ -1,81 +1,40 @@
 <?php
 session_start();
-require_once('../../PHP/db.php');
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+// Kalau sudah login, langsung ke index
+if (isset($_SESSION['id_tamu'])) {
+    header('Location: /Hotel_Lunar/index.php');
+    exit;
+}
 
-    $salt1 = "qm&h*";
-    $salt2 = "pg!@";
+require_once __DIR__ . '/../../PHP/db.php';
 
-    $username = $_POST['username'];
-    $pw_temp = $_POST['password'];
-
-    // Enkripsi password
-    $token = sha1("$salt1$pw_temp$salt2");
-
-    // Query cek user
-    $prepared = $conn->prepare("
-        SELECT * FROM tamu 
-        WHERE username = :username 
-        AND password = :password
-    ");
-
-    $prepared->bindParam(':username', $username);
-    $prepared->bindParam(':password', $token);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
     try {
+        $stmt = $conn->prepare("SELECT * FROM tamu WHERE email = :email AND password = :password");
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $prepared->execute();
-
-        $user = $prepared->fetch(PDO::FETCH_ASSOC);
-
-        // Jika user ditemukan
         if ($user) {
-
-            // Simpan session
-            $_SESSION['username'] = $username;
-            $_SESSION['password'] = $token;
-
-            // Remember me
-            if (isset($_POST['rememberme'])) {
-
-                setcookie(
-                    'username',
-                    $username,
-                    time() + (60 * 60 * 24 * 365),
-                    '/'
-                );
-
-                setcookie(
-                    'password',
-                    $token,
-                    time() + (60 * 60 * 24 * 365),
-                    '/'
-                );
-            }
-
-            // Redirect ke halaman user
-            header('Location: /Hotel-Lunar/index.php');
+            $_SESSION['id_tamu'] = $user['id_tamu'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['alamat'] = $user['alamat'];
+            $_SESSION['email'] = $user['email'];
+            header('Location: /Hotel_Lunar/index.php');
             exit;
-
         } else {
-
-            echo "<script>
-                    alert('Username atau Password salah!');
-                    window.location='/Hotel-Lunar/login/html/login1.php';
-                  </script>";
+            echo "<script>alert('Email atau Password salah!'); window.location='login1.php';</script>";
         }
-
     } catch (PDOException $e) {
-
-        echo "Error : " . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
-
-} else {
-
+}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,22 +59,16 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             <div class="card login-card shadow">
 
                 <h5 class="text-center mb-3">LOGIN</h5>
-                <form method="POST" action="login1.php">
-                    <input type="text" name="username" class="form-control mb-2" placeholder="Username">        <!-- ← tambah name -->
-                    <input type="password" name="password" class="form-control mb-3" placeholder="Password">   <!-- ← tambah name -->
-
-                    <div class="mb-2">
-                    <input type="checkbox" name="rememberme" value="1" class="form-check-input">
-                    <label class="form-check-label">Remember</label>
-                    </div>
-
+                <form method="POST">
+                    <input type="email" class="form-control mb-2" name="email" placeholder="Email" required>
+                    <input type="password" class="form-control mb-3" name="password" placeholder="Password" required>
                     <button type="submit" class="btn btn-primary w-100 mb-2">LOGIN/MASUK</button>
                 </form>
 
                 <p class="text-center small">Tidak memiliki akun?</p>
-                <a href="register.php" class="btn btn-secondary w-100">DAFTAR</a>
+                <a href="login2.php" class="btn btn-secondary w-100">DAFTAR</a>
 
-                <button type="button" class="btn btn-secondary w-100 mt-2" onclick="window.location.href='/Hotel-Lunar/index.php'">kembali ke beranda</button>
+                <button type="button" class="btn btn-secondary w-100 mt-2" onclick="window.location.href='/Hotel_Lunar/index.php'">kembali ke beranda</button>
 
             </div>
         </div>
@@ -124,6 +77,3 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 </div>
 </body>
 </html>
-<?php
-}
-?>

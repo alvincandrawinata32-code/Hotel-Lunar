@@ -1,0 +1,103 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamar Kami - LUNAR HOTEL</title>
+    <link rel="stylesheet" href="../css/kamar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-kiri">
+        <a href="../../index.php">About</a>
+        <a href="kamar.php">Kamar</a>
+    </div>
+    <div class="nav-kanan">
+        <a href="../../login_office/html/login1.php" class="login">Masuk Karyawan</a>
+        <?php if (isset($_SESSION['id_tamu'])): ?>
+            <a href="../../profile/html/userprofile.php" class="login">Halo, <?php echo htmlspecialchars($_SESSION['username']); ?></a>
+            <a href="../../PHP/logout.php" class="login">Logout</a>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="header">
+    <h1>Pilihan Kamar</h1>
+</div>
+
+<main>
+    <div class="kamar-item">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400" alt="Deluxe">
+        <div class="kamar-detail">
+            <h3>Deluxe Room</h3>
+            <p>Kapasitas 2 Orang &nbsp;|&nbsp; Ukuran 28 m²</p>
+            <p>Kamar nyaman dengan kasur King Size dan AC. Cocok untuk pasangan atau perjalanan bisnis singkat.</p>
+            <ul>
+                <li>Kasur King Size</li>
+                <li>AC & WiFi gratis</li>
+                <li>TV LED 43"</li>
+                <li>Kamar Mandi Shower</li>
+                <li>Ruang Tamu & Sofa</li>
+            </ul>
+            <p><b>Harga: Rp 850.000 / malam</b></p>
+            <?php if (isset($_SESSION['id_tamu'])): ?>
+                <a href="booking.php" class="tombol">Booking</a>
+            <?php else: ?>
+                <a href="../../login/html/login1.php" class="tombol">Booking</a>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="kamar-item">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400" alt="Suite">
+        <div class="kamar-detail">
+            <h3>Suite Room</h3>
+            <p>Kapasitas 4 Orang &nbsp;|&nbsp; Ukuran 55 m²</p>
+            <p>Fasilitas mewah dengan bathtub dan ruang tamu terpisah. Pengalaman menginap premium yang tak terlupakan.</p>
+            <ul>
+                <li>Kasur King Size</li>
+                <li>AC & WiFi gratis</li>
+                <li>TV LED 43"</li>
+                <li>Bathtub & Shower</li>
+                <li>Ruang Tamu & Sofa</li>
+            </ul>
+            <p><b>Harga: Rp 2.500.000 / malam</b></p>
+            <?php if (isset($_SESSION['id_tamu'])): ?>
+                <a href="booking.php" class="tombol">Booking</a>
+            <?php else: ?>
+                <a href="../../login/html/login1.php" class="tombol">Booking</a>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="kamar-item">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400" alt="Executive">
+        <div class="kamar-detail">
+            <h3>Executive Room</h3>
+            <p>Kamar eksekutif dengan desain modern dan pemandangan kota yang memukau. Ideal untuk tamu bisnis yang menginginkan kenyamanan ekstra dan privasi lebih.</p>
+            <ul>
+                <li>Kasur King Size</li>
+                <li>AC & WiFi gratis</li>
+                <li>TV LED 43"</li>
+                <li>Kamar Mandi Shower</li>
+                <li>Ruang Tamu & Sofa</li>
+            </ul>
+            <p><b>Harga: Rp 1.250.000 / malam</b></p>
+            <?php if (isset($_SESSION['id_tamu'])): ?>
+                <a href="booking.php" class="tombol">Booking</a>
+            <?php else: ?>
+                <a href="../../login/html/login1.php" class="tombol">Booking</a>
+            <?php endif; ?>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Lunar Hotel - lunarhotel@gmail.com</p>
+</footer>
+
+</body>
+</html>
