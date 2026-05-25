@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_tamu'])) {
 require_once '../../PHP/db.php';
 
 $stmt = $conn->prepare("
-    SELECT r.id_reservasi, k.tipe_kamar, r.tanggal_checkin, r.tanggal_checkout, r.status_reservasi,
+    SELECT r.id_reservasi, k.tipe_kamar, r.tanggal_checkin, r.tanggal_checkout,
     p.total_bayar, p.metode_bayar,
     DATEDIFF(r.tanggal_checkout, r.tanggal_checkin) AS durasi
     FROM reservasi r
@@ -50,7 +50,6 @@ $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h3><?= htmlspecialchars($row['tipe_kamar']) ?></h3>
                         <p class="duration"><?= $row['durasi'] ?> Malam</p>
                         <p>Check-in: <?= $row['tanggal_checkin'] ?> &nbsp;|&nbsp; Check-out: <?= $row['tanggal_checkout'] ?></p>
-                        <p>Status: <?= $row['status_reservasi'] ?></p>
                         <?php if ($row['total_bayar']): ?>
                         <p>Total Bayar: Rp <?= number_format($row['total_bayar'], 0, ',', '.') ?> (<?= $row['metode_bayar'] ?>)</p>
                         <?php endif; ?>

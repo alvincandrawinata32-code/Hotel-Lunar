@@ -40,7 +40,7 @@ $total = $harga * $malam;
 
 try {
     // Insert reservasi
-    $stmtRes = $conn->prepare("INSERT INTO reservasi (id_tamu, id_kamar, tanggal_checkin, tanggal_checkout, status_reservasi) VALUES (:id_tamu, :id_kamar, :checkin, :checkout, 'Menunggu')");
+    $stmtRes = $conn->prepare("INSERT INTO reservasi (id_tamu, id_kamar, tanggal_checkin, tanggal_checkout) VALUES (:id_tamu, :id_kamar, :checkin, :checkout)");
     $stmtRes->bindParam(':id_tamu', $id_tamu);
     $stmtRes->bindParam(':id_kamar', $id_kamar);
     $stmtRes->bindParam(':checkin', $checkin);

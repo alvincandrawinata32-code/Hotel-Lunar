@@ -6,11 +6,11 @@ if (!isset($_SESSION['id_tamu'])) {
 }
 require_once __DIR__ . '/../db.php';
 
-$id_tamu = $_SESSION['id_tamu'];
-$tipe_kamar = $_POST['kamar'];
-$checkin = $_POST['checkin'];
-$checkout = $_POST['checkout'];
-$metode = $_POST['metode_bayar'];
+$id_tamu = $_SESSION['id_tamu'] ?? '';
+$tipe_kamar = $_POST['kamar'] ?? '';
+$checkin = $_POST['checkin'] ?? '';
+$checkout = $_POST['checkout'] ?? '';
+$metode = $_POST['metode_bayar'] ?? '';
 
 // Cari id_kamar berdasarkan tipe
 $stmtKamar = $conn->prepare("SELECT id_kamar, harga FROM kamar WHERE tipe_kamar = :tipe LIMIT 1");
@@ -29,10 +29,22 @@ $harga = $kamar['harga'];
 // Hitung total bayar berdasarkan jumlah malam
 $tgl_in = new DateTime($checkin);
 $tgl_out = new DateTime($checkout);
-$malam = $tgl_in->diff($tgl_out)->days;
+$selisih = $tgl_in->diff($tgl_out);
 
-if ($malam <= 0) {
-    echo "<script>alert('Tanggal check-out harus setelah check-in!'); window.history.back();</script>";
+if($selisih->invert){
+    echo "<script>
+    alert('Tanggal check-out harus setelah check-in!');
+    window.history.back();
+    </script>";
+    exit;
+}
+
+$malam = $selisih->days;
+if($malam <= 0){
+    echo "<script>
+    alert('Minimal menginap 1 malam!');
+    window.history.back();
+    </script>";
     exit;
 }
 
@@ -40,7 +52,7 @@ $total = $harga * $malam;
 
 try {
     // Insert reservasi
-    $stmtRes = $conn->prepare("INSERT INTO reservasi (id_tamu, id_kamar, tanggal_checkin, tanggal_checkout, status_reservasi) VALUES (:id_tamu, :id_kamar, :checkin, :checkout, 'Menunggu')");
+    $stmtRes = $conn->prepare("INSERT INTO reservasi (id_tamu, id_kamar, tanggal_checkin, tanggal_checkout) VALUES (:id_tamu, :id_kamar, :checkin, :checkout)");
     $stmtRes->bindParam(':id_tamu', $id_tamu);
     $stmtRes->bindParam(':id_kamar', $id_kamar);
     $stmtRes->bindParam(':checkin', $checkin);
