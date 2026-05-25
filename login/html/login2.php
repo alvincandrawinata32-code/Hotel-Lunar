@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <h5 class="text-center mb-3">MEMBUAT AKUN</h5>
 
-                <form method="POST">
+                <form method="POST" id="passwordForm">
                     <div class="mb-3">
                         <label class="form-label">Username</label>
                         <input type="text" class="form-control" name="username" required>
@@ -76,7 +76,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" required>
+
+                        <input type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            required >
+                        <small id="passError"></small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Konfirmasi Password</label>
+
+                        <input type="password"
+                            class="form-control"
+                            id="confirm_password"
+                            required>
+
+                        <small id="confirmError"></small>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Daftar</button>
                 </form>
@@ -99,6 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </div>
 </div>
+
+<script src="../../validasi.js"></script>
 
 </body>
 </html>
