@@ -56,7 +56,10 @@ try {
     $stmtPay->bindParam(':metode', $metode);
     $stmtPay->execute();
 
-    echo "<script>alert('Booking berhasil! Total: Rp " . number_format($total, 0, ',', '.') . " untuk $malam malam.'); window.location='/Hotel_Lunar/index.php';</script>";
+    echo "<script>
+    alert('Booking berhasil! Total: Rp " . number_format($total, 0, ',', '.') . " untuk $malam malam.'); 
+    window.location='/Hotel_Lunar/profile/html/riwayat.php'; 
+    </script>";
 } catch (PDOException $e) {
     echo "<script>alert('Gagal booking: " . $e->getMessage() . "'); window.history.back();</script>";
 }
